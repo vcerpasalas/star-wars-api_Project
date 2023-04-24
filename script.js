@@ -7,14 +7,29 @@ async function getData(endpoint) {
   return data;
 }
 
+// Get image from API
+async function getImage(endpoint) {
+  const response = await fetch(endpoint);
+  const blob = await response.blob();
+  return URL.createObjectURL(blob);
+}
+
 // Display people data
 async function displayPeople() {
   const peopleList = document.getElementById("people-list");
   const peopleData = await getData("people");
-  peopleData.results.forEach((person) => {
+  peopleData.results.forEach(async (person) => {
+    
     // Create card element
     const card = document.createElement("div");
     card.classList.add("card");
+
+    // Add person image to card
+    const image = document.createElement("img");
+    const imageUrl = `https://starwars-visualguide.com/assets/img/characters/${getCharId(person.url)}.jpg`;
+    image.src = await getImage(imageUrl);
+    image.alt = person.name;
+    card.appendChild(image);
 
     // Add person name to card
     const name = document.createElement("h3");
@@ -49,6 +64,12 @@ async function displayFilms() {
     listItem.textContent = film.title;
     filmsList.appendChild(listItem);
   });
+}
+
+// Utility function to get character ID from URL
+function getCharId(url) {
+  const id = url.match(/\/([0-9]*)\/$/)[1];
+  return id;
 }
 
 displayPeople();
