@@ -1,6 +1,6 @@
 # Star Wars API Project
 
-This is a simple web application that retrieves data from the Star Wars API and displays it on a web page. The application displays two sections, "People" and "Films", and uses JavaScript to fetch data from the API and create HTML elements to display the data.
+This is a  web application that retrieves data from the Star Wars API (https://swapi.dev/api) and displays it on a web page. The application displays two sections, "People" and "Films", and uses JavaScript to fetch data from the API and create HTML elements to display the data.
 
 ## Getting Started
 
@@ -27,4 +27,4 @@ In the future, the following improvements can be made to the application:
 
 ## Contributing
 
-If you'd like to contribute to this project, feel free to open a pull request. However, please note that this is a simple project meant to demonstrate fetching and displaying data from an API, so major changes may not be accepted.
+If you'd like to contribute to this project, feel free to open a pull request. 
