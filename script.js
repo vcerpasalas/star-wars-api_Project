@@ -19,7 +19,6 @@ async function displayPeople() {
   const peopleList = document.getElementById("people-list");
   const peopleData = await getData("people");
   peopleData.results.forEach(async (person) => {
-    
     // Create card element
     const card = document.createElement("div");
     card.classList.add("card");
@@ -34,6 +33,13 @@ async function displayPeople() {
     // Add person name to card
     const name = document.createElement("h3");
     name.textContent = person.name;
+    name.addEventListener('click', async () => {
+      const films = await Promise.all(person.films.map(async (film) => {
+        const filmData = await getData(film);
+        return filmData.title;
+      }));
+      alert(`Films: ${films.join(', ')}`);
+    });
     card.appendChild(name);
 
     // Add person info to card
@@ -66,7 +72,6 @@ async function displayFilms() {
   });
 }
 
-// Utility function to get character ID from URL
 function getCharId(url) {
   const id = url.match(/\/([0-9]*)\/$/)[1];
   return id;
